@@ -28,6 +28,22 @@
 			device_type = "cpu";
 			compatible = "arm,cortex-m0+";
 			reg = <0>;
+			cpu-power-states = <&idle &standby>;
+		};
+
+		power-states {
+			standby: standby {
+				compatible = "zephyr,power-state";
+				power-state-name = "standby";
+				min-residency-us = <1000000>;
+				exit-latency-us = <300>;
+			};
+			idle: idle {
+				compatible = "zephyr,power-state";
+				power-state-name = "runtime-idle";
+				min-residency-us = <1000>;
+				exit-latency-us = <300>;
+			};
 		};
 	};
 
